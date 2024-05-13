@@ -42,6 +42,13 @@ axios("https://api.thecatapi.com/v1/images/search")
  * This function should execute immediately.
  */
 
+
+async function initialLoad () {
+const response = fetch('https://api.thecatapi.com/v1/breeds')
+};
+
+const breeds = await response
+
 /**
  * 2. Create an event handler for breedSelect that does the following:
  * - Retrieve information on the selected breed from the cat API using fetch().
