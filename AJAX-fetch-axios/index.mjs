@@ -21,7 +21,7 @@ axios("https://api.thecatapi.com/v1/images/search")
         console.log(err);
     });
 
-    fetch ("https://api.thecatapi.com/v1/images/search")
+fetch("https://api.thecatapi.com/v1/images/search")
     .then((x) => {
         console.log(x);
         x.json().then((j) => {
@@ -32,7 +32,7 @@ axios("https://api.thecatapi.com/v1/images/search")
         console.log(err);
     });
 
-    
+
 /**
  * 1. Create an async function "initialLoad" that does the following:
  * - Retrieve a list of breeds from the cat API using fetch().
@@ -43,18 +43,27 @@ axios("https://api.thecatapi.com/v1/images/search")
  */
 
 
-async function initialLoad () {
+async function initialLoad() {
     try {
         const response = await fetch('https://api.thecatapi.com/v1/breeds');
-console.log(response);
-const breeds = await response.json();
+        console.log(response);
+        const breeds = await response.json();
 
-const breedSelect = document.getElementById('breedSelect');
-if (!response.ok){
-    throw new Error ('data not found')
-}
+        const breedSelect = document.getElementById('breedSelect');
+
+        breeds.forEach(breed => {
+            const option = document.createElement('option');
+            option.value = breed.id;
+            option.textContent = breed.name;
+            breedSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('data not found');
     }
 }
+document.addEventListener("DOMContentLoaded", (evt) => {
+    initialLoad();
+});
 
 
 /**
