@@ -8,8 +8,41 @@ function getUserData(id) {
         db3: db3,
     };
 
+    // console.log(dbs["db1"](id));
+
+    let result = {};
+    result.id = id;
+
+try {
 let waiting = await central(id);
 console.log(waiting);
+console.log(dbs[waiting](id));
+let db = await dbs[waiting](id);
+// console.log(db);
+result.username = db.username;
+result.website = db.website;
+result.company = db.company;
+console.log(result);
+}
+};
+
+// getUserData(8);
+
+function getUserData2 (id) {
+    const dbs = {
+        db1; db1,
+        db2: db2,
+        db3: db3,
+    };
+    central(id)
+        .then((data) => {
+        console.log(data);
+        dbs[data](id)
+        .then((db) => {
+            console.log(db);
+        })
+    })
+}
 
     Promise.any([central(id)])
     .then((x) => {
@@ -67,4 +100,3 @@ console.log(waiting);
     // }
 
     console.log("its working");
-}
