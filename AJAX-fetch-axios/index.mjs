@@ -44,10 +44,18 @@ axios("https://api.thecatapi.com/v1/images/search")
 
 
 async function initialLoad () {
-const response = fetch('https://api.thecatapi.com/v1/breeds')
-};
+    try {
+        const response = await fetch('https://api.thecatapi.com/v1/breeds');
+console.log(response);
+const breeds = await response.json();
 
-const breeds = await response
+const breedSelect = document.getElementById('breedSelect');
+if (!response.ok){
+    throw new Error ('data not found')
+}
+    }
+}
+
 
 /**
  * 2. Create an event handler for breedSelect that does the following:
